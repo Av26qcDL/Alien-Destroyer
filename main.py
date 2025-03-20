@@ -115,8 +115,11 @@ game_name_rect = game_name.get_rect(center = (400, 100))
 game_over_message = test_font.render('Game Over', False,(111,196,169))
 game_over_message_rect = game_over_message.get_rect(center = (400, 100))
 
-game_message = test_font.render('Press space to run', False,(111,196,169))
-game_message_rect = game_message.get_rect(center = (400, 300))
+game_message = test_font.render('Press space to start game', False,(111,196,169))
+game_message_rect = game_message.get_rect(center = (400, 300)) 
+
+instruction_message = test_font.render('Once in game, press space to jump and F to fire', False,(111,196,169))
+instruction_message_rect = instruction_message.get_rect(center = (400, 350))
 
 # Timer
 obstacle_timer = pygame.USEREVENT + 1
@@ -212,7 +215,8 @@ while True:
 
         if score > 0:
             screen.blit(score_message, score_message_rect)
-        else: screen.blit(game_message, game_message_rect)
+        else: screen.blit(game_message, game_message_rect) 
+        screen.blit(instruction_message, instruction_message_rect)
 
 
     pygame.display.update()
