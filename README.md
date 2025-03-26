@@ -35,6 +35,7 @@ Alien Destroyer is a fun and action-packed 2D shooter game developed using Pytho
 ## Installation and Setup
 1. **Prerequisites**:
    - Python 3.10+ installed on your system.
+   - Git installed on your system
    - Install the Pygame library:
 ```shell script
 pip install pygame
