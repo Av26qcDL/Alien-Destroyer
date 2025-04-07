@@ -25,7 +25,21 @@ def collisions(player, obstacles):
     if obstacles:
         for obstacle_rect in obstacles:
             if player.colliderect(obstacle_rect): return False
-    return True
+    return True 
+
+def update_player_position(player, movement):
+    if movement == -5:  # Move left
+        player.x -= 5
+    elif movement == 5:  # Move right
+        player.x += 5
+
+    # Ensure the player stays within screen bounds
+    if player.left <= 0:
+        player.left = 0
+    elif player.right >= 800:
+        player.right = 800
+
+    return player
 
 
 def bullet_movement(bullets):
@@ -92,7 +106,8 @@ obstacle_rect_list = []
 # Player char
 player_surf = pygame.image.load('assets/images/person.png').convert_alpha()
 player_rect = player_surf.get_rect(midbottom=(45, 310))
-player_gravity = 0
+player_gravity = 0 
+player_movement = 0  # Initialize player movement
 
 # Bullets
 bullet_surf = pygame.image.load('assets/images/bullet.png').convert_alpha()
@@ -137,14 +152,30 @@ while True:
             pygame.quit()
             exit()
 
-        if game_active:
+        if game_active: 
+            
+            # Move left when 'a' is pressed
+            if event.type == pygame.KEYDOWN:  # Corrected to KEYDOWN
+                if event.key == pygame.K_a: 
+                    player_movement = -5 
+
+            # Move right when 'd' is pressed
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_d: 
+                    player_movement = 5
+
+            # Stop movement when 'a' or 'd' is released
+            if event.type == pygame.KEYUP:  # Handle key release
+                if event.key in [pygame.K_a, pygame.K_d]:
+                    player_movement = 0
+
             if event.type == pygame.MOUSEBUTTONDOWN and player_rect.bottom >= 310:
                 if player_rect.collidepoint(event.pos):
-                    player_gravity = -20
+                    player_gravity = -20  # Jump when the player clicks on the character
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE and player_rect.bottom >= 310:
-                    player_gravity = -20
+                    player_gravity = -20 # Jump when space is pressed
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_f:  # 'f' key for fire
@@ -173,7 +204,8 @@ while True:
 
         # Player
         player_gravity += 1
-        player_rect.y += player_gravity
+        player_rect.y += player_gravity 
+        player_rect.x += player_movement  # Apply horizontal movement
         if player_rect.bottom >= 310: player_rect.bottom = 310
         screen.blit(player_surf, player_rect)
 
