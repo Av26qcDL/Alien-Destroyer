@@ -84,7 +84,7 @@ pygame.init()
 
 
 # create the screen
-screen = pygame.display.set_mode((800, 400))
+screen = pygame.display.set_mode((800, 400), pygame.SRCALPHA) # Use SRCALING for better scaling on different resolutions
 # Caption and Icon
 pygame.display.set_caption("Alien Destroyer")
 clock = pygame.time.Clock()
