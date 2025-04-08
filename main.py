@@ -104,7 +104,7 @@ yellow_five_eyed_alien_surf = pygame.image.load('assets/images/yellowfiveeyedali
 obstacle_rect_list = []
 
 # Player char
-player_surf = pygame.image.load('assets/images/person.png').convert_alpha()
+player_surf = pygame.image.load('assets/images/character.png').convert_alpha()
 player_rect = player_surf.get_rect(midbottom=(45, 310))
 player_gravity = 0 
 player_movement = 0  # Initialize player movement
