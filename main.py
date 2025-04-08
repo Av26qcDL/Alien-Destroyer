@@ -133,7 +133,7 @@ game_over_message_rect = game_over_message.get_rect(center = (400, 100))
 game_message = test_font.render('Press space to start game', False,(111,196,169))
 game_message_rect = game_message.get_rect(center = (400, 300)) 
 
-instruction_message = test_font.render('Once in game, press space to jump and F to fire', False,(111,196,169))
+instruction_message = test_font.render('In game, press W to jump and left click to fire', False,(111,196,169))
 instruction_message_rect = instruction_message.get_rect(center = (400, 350))
 
 # Timer
@@ -174,11 +174,11 @@ while True:
                     player_gravity = -20  # Jump when the player clicks on the character
 
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE and player_rect.bottom >= 310:
+                if event.key == pygame.K_w and player_rect.bottom >= 310:
                     player_gravity = -20 # Jump when space is pressed
 
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_f:  # 'f' key for fire
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:  # Left mouse button
                     # Create a new bullet at the player's position
                     bullet_rect = bullet_surf.get_rect(midleft=(player_rect.right, player_rect.centery))
                     bullet_list.append(bullet_rect)
